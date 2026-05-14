@@ -8,11 +8,12 @@
   list-style: none;
   margin: 0;
   padding: 0;
-  width: 15rem;
+  width: 100%;
+  max-width: 40rem;
 }
 
 #registros li {
-  margin: 0.5rem 0;
+  margin: 1.5rem 0;
 }
 
 #registros p {

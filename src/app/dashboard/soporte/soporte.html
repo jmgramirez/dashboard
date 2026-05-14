@@ -1,4 +1,14 @@
+<div>
+    <ul>
+        @for (registro of registros; track registro.id) {
+            <app-registro-soporte [registro]="registro"></app-registro-soporte>
+        } @empty {
+            <p>No hay registros de soporte aún.</p>
+        }
+    </ul>
+</div>
+
 
 <div id="nuevo-registro">
-    <app-nuevo-registro-soporte></app-nuevo-registro-soporte>
+    <app-nuevo-registro-soporte (nuevoRegistro)="guardarRegistro($event)"></app-nuevo-registro-soporte>
 </div>

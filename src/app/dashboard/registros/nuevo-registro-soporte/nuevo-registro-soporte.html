@@ -1,12 +1,12 @@
-<form (ngSubmit)="guardarRegistro()">
+<form (ngSubmit)="guardarRegistro(tituloIngresado.value, pedidoIngresado.value)" #formularioSoporte>
     <p class="control">
         <label for="titulo">Título:</label>
-        <input type="text" id="titulo" name="titulo" required [(ngModel)]="titulo">
+        <input type="text" id="titulo" name="titulo" required #tituloIngresado>
     </p>
 
     <p class="control">
         <label for="pedido">Pedido:</label>
-        <textarea id="pedido" name="pedido" required row="3" [(ngModel)]="pedido"></textarea>
+        <textarea id="pedido" name="pedido" required row="3" #pedidoIngresado></textarea>
     </p>
     <p>
         <button app-boton>

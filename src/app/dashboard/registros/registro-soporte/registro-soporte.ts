@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input, signal } from '@angular/core';
+import { Registro } from './registro.model';
 
 @Component({
   selector: 'app-registro-soporte',
@@ -6,4 +7,16 @@ import { Component } from '@angular/core';
   templateUrl: './registro-soporte.html',
   styleUrl: './registro-soporte.css',
 })
-export class RegistroSoporte {}
+export class RegistroSoporte {
+  @Input({required: true}) registro!: Registro;
+  expanded = signal(false);
+
+  toggleExpanded() {
+    this.expanded.update(value => !value);
+  }
+
+  cerrarRegistro() {
+    this.registro.estado = 'cerrado';
+  }
+
+}

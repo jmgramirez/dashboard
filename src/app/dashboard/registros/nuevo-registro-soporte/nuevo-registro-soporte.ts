@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
-import { Boton } from '../../../compartida/boton/boton';
+import { Component, ElementRef, EventEmitter, Output, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+
+import { Boton } from '../../../compartida/boton/boton';
+import { Registro } from '../registro-soporte/registro.model';
 
 @Component({
   selector: 'app-nuevo-registro-soporte',
@@ -9,16 +11,23 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './nuevo-registro-soporte.css',
 })
 export class NuevoRegistroSoporte {
+  @Output() nuevoRegistro = new EventEmitter<Registro>();
+  @ViewChild('formularioSoporte')
+  private formularioSoporte?: ElementRef<HTMLFormElement>;
 
-  titulo: string = '';
-  pedido: string = '';
+  guardarRegistro(titulo: string, pedido: string) {
+     const registro: Registro = { 
+      id: Date.now().toString(),
+      titulo, 
+      pedido,
+      estado: 'abierto'
+    };
+    this.nuevoRegistro.emit(registro);
+    this.limpiarCampos();
+  }
 
-  guardarRegistro() {
-    // Aquí iría la lógica para guardar el nuevo registro de soporte
-    console.log('Registro de soporte guardado');
-    console.log('Título:', this.titulo);
-    console.log('Pedido:', this.pedido);
-    this.titulo = '';
-    this.pedido = '';
+
+  limpiarCampos() {
+    this.formularioSoporte?.nativeElement.reset(); // Reinicia el formulario para limpiar los campos
   }
 } 
